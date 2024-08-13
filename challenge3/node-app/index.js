@@ -4,7 +4,6 @@ const mysql = require('mysql2');
 const app = express();
 const port = 8080;
 
-// Database connection
 const db = mysql.createConnection({
   host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER || 'root',
@@ -20,7 +19,6 @@ db.connect(err => {
   console.log('Connected to database.');
 });
 
-// API endpoint to get all books
 app.get('/api/books', (req, res) => {
   db.query('SELECT * FROM books', (err, results) => {
     if (err) throw err;
@@ -28,7 +26,7 @@ app.get('/api/books', (req, res) => {
   });
 });
 
-// API endpoint to get a book by ID
+
 app.get('/api/books/:id', (req, res) => {
   const bookId = req.params.id;
   db.query('SELECT * FROM books WHERE id = ?', [bookId], (err, result) => {
@@ -37,7 +35,6 @@ app.get('/api/books/:id', (req, res) => {
   });
 });
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

@@ -22,7 +22,7 @@ services:
       - DB_PASSWORD=rootpassword
       - DB_DATABASE=testdb
     deploy:
-      replicas: 3  # Scale to 3 instances
+      replicas: 3  
 
     volumes:
       - ./node-app:/usr/src/app
